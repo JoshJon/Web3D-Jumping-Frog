@@ -1,0 +1,282 @@
+<!-- Copyright © 2018 Joshua Jon. All rights reserved. -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>X3DOM Assignment 1</title>
+    <!-- Specify path to x3dom library in the lines below -->
+    <link rel="stylesheet" type="text/css" href="../x3dom/x3dom.css" />
+    <script type="text/javascript" src="../x3dom/x3dom.js">
+    </script>
+    <style type="text/css">
+      body {
+        background-color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h4>Web3D - Jumping Frog</h4>
+    <X3D xmlns="http://www.web3d.org/specifications/x3d-namespace" width="1500px" height="800px">
+      <Scene>
+
+        <TimeSensor DEF='Timer' cycleInterval='5' loop='true' />
+
+        <!-- Scene -->
+        <Transform translation='-0.1 -0.7 0'>
+          <!-- Body -->
+          <Transform DEF='move'>
+            <Transform DEF='TorsoAngle'>
+              <Shape USE='axis'>
+              </Shape>
+              <!-- Torso -->
+              <Transform translation='0 0 0'>
+                <Shape DEF='pentagon'>
+                  <Appearance>
+                    <Material diffuseColor='0 1 0' />
+                  </Appearance>
+                  <IndexedFaceSet solid='false' coordIndex='0 1 2 3 4 5 1 -1 6 1 2 3 4 5 1 -1'>
+                    <Coordinate point='0 0.5 0, 1 0 -0.5, 1 0 0.5, 0 0 1, -1 0 0, 0 0 -1, 0 -0.5 0' />
+                  </IndexedFaceSet>
+                </Shape>
+              </Transform>
+
+              <!-- top head -->
+              <Transform translation='1 0 0'>
+                <Shape DEF='topDiamond'>
+                  <Appearance>
+                    <Material diffuseColor='0 1 0' />
+                  </Appearance>
+                  <IndexedFaceSet solid='false' coordIndex='0 1 2 3 4 1 -1'>
+                    <Coordinate point='0.5 0.25 0, 0 0 0, 0.5 0 0.25, 1 0 0, 0.5 0 -0.25, 0.5 -0.25 0' />
+                  </IndexedFaceSet>
+                </Shape>
+                <!-- mandible -->
+                <Transform DEF='jawAngle'>
+                  <!-- lines for axis -->
+                  <Shape DEF='axis'>
+                    <IndexedLineSet coordIndex=" 0 1 -1 0 2 -1 0 3 -1" colorPerVertex="true" colorIndex="0 0 -1 1 1 -1 2 2 -1">
+                      <Coordinate point="0 0 0, 0.5 0 0, 0 0.5 0, 0 0 0.5" />
+                      <Color color="1 0 0, 0 1 0, 0 0 1" />
+                    </IndexedLineSet>
+                  </Shape>
+                  <Shape DEF='botDiamond'>
+                    <Appearance>
+                      <Material diffuseColor='0 1 0' />
+                    </Appearance>
+                    <IndexedFaceSet solid='false' coordIndex='0 1 2 3 4 1'>
+                      <Coordinate point=' 0.5 -0.25 0, 0 0 0, 0.5 0 0.25, 1 0 0, 0.5 0 -0.25' />
+                    </IndexedFaceSet>
+                  </Shape>
+                </Transform>
+
+                <!-- Right Eye -->
+                <Transform scale='0.1 0.1 0.1' translation='0.75 0.1 0.15'>
+                  <shape DEF='eye'>
+                    <appearance>
+                      <material diffuseColor='0 0 0.5'></material>
+                    </appearance>
+                    <sphere></sphere>
+                  </shape>
+                </Transform>
+                <!-- Left Eye -->
+                <Transform scale='0.1 0.1 0.1' translation='0.75 0.1 -0.15'>
+                  <shape USE='eye'>
+                  </shape>
+                </Transform>
+
+              </Transform>
+
+              <!-- Front right hip -->
+              <Transform DEF='FRHipAngle' translation='1 0 0.5'>
+                <Shape USE='axis'>
+                </Shape>
+                <!-- Front right upper leg -->
+                <Shape DEF='diamond'>
+                  <Appearance>
+                    <Material diffuseColor='0 1 0' />
+                  </Appearance>
+                  <IndexedFaceSet solid='false' coordIndex='0 1 2 3 4 1 -1 5 1 2 3 4 1'>
+                    <Coordinate point='0.5 0.25 0, 0 0 0, 0.5 0 0.25, 1 0 0, 0.5 0 -0.25, 0.5 -0.25 0' />
+                  </IndexedFaceSet>
+                </Shape>
+                <!-- Front right knee  -->
+                <Transform DEF='FKneeAngle' translation='1 0 0'>
+                  <Shape USE='axis'>
+                  </Shape>
+                  <!-- Front right lower leg -->
+                  <Shape USE='diamond'>
+                  </Shape>
+                  <!-- Front right foot -->
+                  <Transform DEF='FFootAngle' translation='1 0 0'>
+                    <Shape USE='axis'>
+                    </Shape>
+                    <Shape DEF='triangle'>
+                      <Appearance>
+                        <Material diffuseColor='0 1 0' />
+                      </Appearance>
+                      <IndexedFaceSet solid='false' coordIndex='0 1 2'>
+                        <Coordinate point='0 0 0, 0.5 0 0.5, 0.5 0 -0.5' />
+                      </IndexedFaceSet>
+                    </Shape>
+                  </Transform>
+                </Transform>
+              </Transform>
+
+              <!-- Front left hip -->
+              <Transform DEF='FLHipAngle' translation='1 0 -0.5'>
+                <Shape USE='axis'>
+                </Shape>
+                <!-- Front Left upper leg -->
+                <Shape USE='diamond'>
+                </Shape>
+                <!-- Front left knee  -->
+                <Transform USE='FKneeAngle' translation='1 0 0'>
+                </Transform>
+              </Transform>
+
+              <!-- Rear left hip -->
+              <Transform translation='-1 0 0'>
+                <Transform DEF='RLHipAngle'>
+                  <Shape USE='axis'>
+                  </Shape>
+                  <!-- Rear left upper leg -->
+                  <Shape USE='diamond'>
+                  </Shape>
+                  <!-- Rear left knee -->
+                  <Transform translation='1 0 0'>
+                    <Transform DEF='RKneeAngle'>
+                      <Shape USE='axis'>
+                      </Shape>
+                      <!-- Rear left lower leg -->
+                      <Shape USE='diamond'>
+                      </Shape>
+                      <Transform DEF='RLowLegAngle' translation='1 0 0'>
+                        <Shape USE='axis'>
+                        </Shape>
+                        <Transform>
+                          <Shape USE='diamond'>
+                          </Shape>
+                          <!-- rear right foot -->
+                          <Transform translation='1 0 0' rotation='0 0 1 2.2'>
+                            <Transform DEF='RFootAngle'>
+                              <Shape USE='axis'>
+                              </Shape>
+                              <Shape USE='triangle'>
+                              </Shape>
+                            </Transform>
+                          </Transform>
+                        </Transform>
+                      </Transform>
+                    </Transform>
+                  </Transform>
+                </Transform>
+              </Transform>
+
+              <!-- Rear right hip -->
+              <Transform translation='-1 0 0'>
+                <Transform DEF='RRHipAngle'>
+                  <Shape USE='axis'>
+                  </Shape>
+                  <!-- rear right upper leg -->
+                  <Shape USE='diamond'>
+                  </Shape>
+                  <!-- Rear right knee -->
+                  <Transform translation='1 0 0'>
+                    <Transform USE='RKneeAngle'>
+                    </Transform>
+                  </Transform>
+                </Transform>
+              </Transform>
+
+              <!-- Transform close for torso -->
+            </Transform>
+          </Transform>
+
+          <!-- Floor -->
+          <Transform translation='0 -2.5 0' scale='10 1 4'>
+            <Shape DEF='floor'>
+              <Appearance>
+                <Material transparency='0.2' diffuseColor='0,0.2,1' />
+              </Appearance>
+              <Box />
+            </Shape>
+          </Transform>
+
+          <!-- lillyPad left -->
+          <Transform translation='-3.5 -1.4 0' scale='0.7 0 0.7'>
+            <Shape DEF='lillyPad'>
+              <Appearance>
+                <Material emissiveColor='0 1 0' />
+              </Appearance>
+              <IndexedFaceSet solid='false' coordIndex='0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -1'>
+                <Coordinate point='-4.4 0 0, -4 0 -2, -2 0 -4, 0 0 -4.5, 2 0 -4, 3 0 -3, 3 0 -1.5, 2 0 -0.5, 0 0 0, 2 0 0.5, 3 0 1.5, 3 0 3, 2 0 4, 0 0 4.5, -2 0 4, -4 0 2' />
+              </IndexedFaceSet>
+            </Shape>
+          </Transform>
+
+          <!-- lillyPad right -->
+          <Transform translation='5.5 -1.4 0' scale='0.7 0 0.7'>
+            <Shape USE='lillyPad'>
+            </Shape>
+          </Transform>
+        </Transform>
+
+
+        <!-- ANIMATIONS -->
+
+        <!-- Torso Orientation Animation -->
+        <OrientationInterpolator DEF='TorsoInterpolater' key='0 0.25 0.4 0.5 0.6' keyValue='0 0 0 0, 0 0 0 0, 0 0 1 0.3, 0 0 1 0.3, 0 0 0 0' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='TorsoInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='TorsoInterpolater' fromField='value_changed' toNode='TorsoAngle' toField='set_rotation' />
+        <!-- JawAngle -->
+        <OrientationInterpolator DEF='jawInterpolater' key='0 0.25 0.5 0.7' keyValue='0 0 0 0, 0 0 0 0, 0 0 1 -0.4 , 0 0 0 0' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='jawInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='jawInterpolater' fromField='value_changed' toNode='jawAngle' toField='set_rotation' />
+        <!-- FRHipAngle -->
+        <OrientationInterpolator DEF='FRHipInterpolater' key='0 0.25 0.5 0.7' keyValue='0 0 1 -2.5, 0 0 1 -2.5, 0 0 1 0, 0 0 1 -2.5' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='FRHipInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='FRHipInterpolater' fromField='value_changed' toNode='FRHipAngle' toField='set_rotation' />
+        <!-- FLHipAngle -->
+        <OrientationInterpolator DEF='FLHipInterpolater' key='0 0.25 0.5 0.7' keyValue='0 0 1 -2.5, 0 0 1 -2.5, 0 0 1 0, 0 0 1 -2.5' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='FLHipInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='FLHipInterpolater' fromField='value_changed' toNode='FLHipAngle' toField='set_rotation' />
+        <!-- FKneeAngle -->
+        <OrientationInterpolator DEF='FKneeInterpolater' key='0 0.25 0.5 0.7' keyValue='0 0 1 1.7, 0 0 1 1.7, 0 0 1 0.5, 0 0 1 1.7' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='FKneeInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='FKneeInterpolater' fromField='value_changed' toNode='FKneeAngle' toField='set_rotation' />
+        <!-- FFootAngle -->
+        <OrientationInterpolator DEF='FFootInterpolater' key='0 0.25 0.35 0.55 0.7' keyValue='0 0 1 0.7, 0 0 1 0.7, 0 0 1 -0.2, 0 0 1 1, 0 0 1 0.7' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='FFootInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='FFootInterpolater' fromField='value_changed' toNode='FFootAngle' toField='set_rotation' />
+        <!-- RLHip Orientation Animation -->
+        <OrientationInterpolator DEF='RLHipInterpolater' key='0 0.25 0.3 0.33 0.36 0.39 0.42 0.55 0.58 0.62 0.66 0.7' keyValue='-0.7 -0.7 1 -0.6, -0.7 -0.7 1 -0.6, -0.7 -0.7 1 -1, -0.66 -0.66 1 -1.2, -0.5 -0.5 1 -1.5, -0.4 -0.4 1 -1.7, -0.3 -0.3 1 -2, -0.3 -0.3 1 -2, -0.4 -0.4 1 -1.7, -0.5 -0.5 1 -1.5, -0.6 -0.66 1 -1.2, -0.7 -0.7 1 -0.6, -0.7 -0.7 1 -0.6' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='RLHipInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='RLHipInterpolater' fromField='value_changed' toNode='RLHipAngle' toField='set_rotation' />
+        <!-- RRHip Orientation Animation -->
+        <OrientationInterpolator DEF='RRHipInterpolater' key='0 0.25 0.3 0.33 0.36 0.39 0.42 0.55 0.58 0.62 0.66 0.7' keyValue='0.7 0.7 1 -0.6, 0.7 0.7 1 -0.6, 0.7 0.7 1 -1, 0.66 0.66 1 -1.2, 0.5 0.5 1 -1.5, 0.4 0.4 1 -1.7, 0.3 0.3 1 -2, 0.3 0.3 1 -2, 0.4 0.4 1 -1.7, 0.5 0.5 1 -1.5, 0.6 0.66 1 -1.2, 0.7 0.7 1 -0.6, 0.7 0.7 1 -0.6' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='RRHipInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='RRHipInterpolater' fromField='value_changed' toNode='RRHipAngle' toField='set_rotation' />
+        <!-- RKnee Orientation Animation -->
+        <OrientationInterpolator DEF='RKneeInterpolater' key='0 0.25 0.3 0.35 0.4 0.42 0.44 0.47 0.5 0.53 0.55 0.57 0.59 0.62 0.65' keyValue='0 0 1 -2, 0 0 1 -2, 0 0 1 -1.8, 0 0 1 -1.4, 0 0 1 -0.9, 0 0 1 -0.6, 0 0 1 -0.35, 0 0 1 -0.2, 0 0 1 -0.2, 0 0 1 -0.35, 0 0 1 -0.6, 0 0 1 -0.9, 0 0 1 -1.4, 0 0 1 -1.8, 0 0 1 -2' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='RKneeInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='RKneeInterpolater' fromField='value_changed' toNode='RKneeAngle' toField='set_rotation' />
+        <!-- RLowLeg Orientation Animation -->
+        <OrientationInterpolator DEF='RLowLegInterpolater' key='0 0.25 0.3 0.7' keyValue='0 0 1 -0.5, 0 0 1 -0.5, 0 0 1 -0.3, 0 0 1 -0.5' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='RLowLegInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='RLowLegInterpolater' fromField='value_changed' toNode='RLowLegAngle' toField='set_rotation' />
+        <!-- RFoot Orientation Animation -->
+        <OrientationInterpolator DEF='RFootInterpolater' key='0 0.25 0.3 0.35 0.4 0.42 0.44 0.51 0.55 0.6 0.66' keyValue='0 0 0 0, 0 0 0 0, 0 0 1 -0.5, 0 0 1 -0.5, 0 0 1 -1, 0 0 1 -1.5, 0 0 1 -1.8, 0 0 1 -1.5, 0 0 1 -1, 0 0 1 -0.5, 0 0 1 -0.1' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='RFootInterpolater' toField='set_fraction' />
+        <ROUTE fromNode='RFootInterpolater' fromField='value_changed' toNode='RFootAngle' toField='set_rotation' />
+        <!-- Postion animation -->
+        <PositionInterpolator DEF='MoveInterpolator' key='0 0.25 0.3 0.35 0.38 0.41 0.44 0.47 0.5 0.53 0.56 0.59 0.62 0.65 0.68 0.71 1' keyValue='-4.6 0 0, -4.6 0 0, -4.3 0.5 0, -4.2 0.8 0, -4.1 1 0, -3.8 2 0, -3.4 3 0, -2.6 3.8 0, -1.5 4.02 0.2, 0 4.1 0, 1.5 4.02 0.2, 2.6 3.8 0, 3.4 3 0, 3.8 2 0, 4.1 1 0, 4.6 0 0, 4.6 0 0' />
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='MoveInterpolator' toField='set_fraction' />
+        <ROUTE fromNode='MoveInterpolator' fromField='value_changed' toNode='move' toField='translation' />
+
+      </Scene>
+    </X3D>
+  </body>
+
+</html>
