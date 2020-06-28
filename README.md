@@ -1,9 +1,5 @@
 ## Web3D Jumping Frog
 
-Something from when I was still a noob at coding 🙃
-
-### About
-
 A jumping frog using the X3DOM library.
 
 ### Requirements
@@ -17,7 +13,3 @@ For example:
 ```
 ## Running
 The animation has only been tested with Google Chrome. As a result, other browsers may be incompatible.
-
-## Author
-
-Joshua Jon - https://github.com/JoshJon
